@@ -25,10 +25,10 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("Documentação Projeto Individual | ??? - ???")
+                .title("Documentação Projeto Individual | Departamento - Funcionario")
                 .description("Projeto Individual SpringBoot - Arthur da Silva Monteiro")
                 .license("Apache license version 2.0")
-                .version("1.0.0")
+                .version("2.0.0")
                 .build();
         return apiInfo;
     }
