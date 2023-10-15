@@ -1,24 +1,70 @@
 package com.api.ars.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.api.ars.entities.Departamento;
+import com.api.ars.repositories.DepartamentoRepository;
 
 @Service
 public class DepartamentoService {
 	
-	
-	//GET
-	
-	
-	//GET
-	
+	@Autowired
+	DepartamentoRepository departamentoRepository;
+
+	//GET Id
+	public Departamento buscarPorId(Integer id) {
+		return departamentoRepository.findById(id).get();
+	}
+
+	//GET Listar
+	public List<Departamento> listarTodos() {
+		return departamentoRepository.findAll();
+	}
 	
 	//POST
-	
-	
+	public Departamento salvar(Departamento departamento) {
+		return departamentoRepository.save(departamento);
+	}
+
 	//PUT
-	
+	public Departamento atualizar(Integer id, Departamento departamento) {
+		Departamento registroAntigo = buscarPorId(id);
+
+		if (departamento.getNome() != null) {
+			registroAntigo.setNome(departamento.getNome());
+		}
+		if (departamento.getEndereco() != null) {
+			registroAntigo.setEndereco(departamento.getEndereco());
+		}
+		if (departamento.getEmail() != null) {
+			registroAntigo.setEmail(departamento.getEmail());
+		}
+		if (departamento.getTelefoneFixo() != null) {
+			registroAntigo.setTelefoneFixo(departamento.getTelefoneFixo());
+		}
+		if (departamento.getCelular() != null) {
+			registroAntigo.setCelular(departamento.getCelular());
+		}
+		if (departamento.getNome() != null) {
+			registroAntigo.setNome(departamento.getNome());
+		}
+		if (departamento.getDescricao() != null) {
+			registroAntigo.setDescricao(departamento.getDescricao());
+		}
+		if (departamento.getOrcamento() != null) {
+			registroAntigo.setOrcamento(departamento.getOrcamento());
+		}
+		
+		registroAntigo.setId(id);
+		return departamentoRepository.save(registroAntigo);
+	}
 	
 	//DELETE
-	
+	public void remover(Integer id) {
+		departamentoRepository.deleteById(id);
+	}
 	
 }
