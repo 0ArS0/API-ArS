@@ -41,6 +41,9 @@ public class Departamento {
 	
 	@Column(name = "orcamento_dept")
 	private Double orcamento;
+	
+	@Column(name = "ativo_dept")
+	private Boolean ativo;
 
 	public Integer getId() {
 		return id;
@@ -114,27 +117,37 @@ public class Departamento {
 		this.orcamento = orcamento;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public Departamento() {
 	}
 
-	public Departamento(Integer id, String nome, String descricao, String telefoneFixo, String endereco, String email,
-			String celular, LocalDate dataCriacao, Double orcamento) {
+	public Departamento(Integer id, String nome, String endereco, String email, String telefoneFixo, String celular,
+			String descricao, LocalDate dataCriacao, Double orcamento, Boolean ativo) {
+		super();
 		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
-		this.telefoneFixo = telefoneFixo;
 		this.endereco = endereco;
 		this.email = email;
+		this.telefoneFixo = telefoneFixo;
 		this.celular = celular;
+		this.descricao = descricao;
 		this.dataCriacao = dataCriacao;
 		this.orcamento = orcamento;
+		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", telefoneFixo="
-				+ telefoneFixo + ", endereco=" + endereco + ", email=" + email + ", telefoneCelular=" + celular
-				+ ", DataCriacao=" + dataCriacao + ", orcamento=" + orcamento + "]";
+		return "Departamento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", email=" + email
+				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", descricao=" + descricao
+				+ ", dataCriacao=" + dataCriacao + ", orcamento=" + orcamento + ", ativo=" + ativo + "]";
 	}
 
 }

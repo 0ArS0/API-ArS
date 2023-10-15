@@ -50,6 +50,9 @@ public class Funcionario {
 	@Column(name = "data_nascimento_func")
 	private LocalDate dataNascimento;
 	
+	@Column(name = "ativo_func")
+	private Boolean ativo;
+	
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
 	private Departamento departamento;
@@ -142,30 +145,51 @@ public class Funcionario {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
 	public Funcionario() {
 	}
 
-	public Funcionario(Integer id, String nome, String genero, String cargo, String endereco, String telefoneFixo,
-			String celular, String email, Double salario, LocalDate dataContratacao, LocalDate dataNascimento) {
+	public Funcionario(Integer id, String nome, String endereco, String email, String telefoneFixo, String celular,
+			String genero, String cargo, Double salario, LocalDate dataContratacao, LocalDate dataNascimento,
+			Boolean ativo, Departamento departamento) {
+		super();
 		this.id = id;
 		this.nome = nome;
-		this.genero = genero;
-		this.cargo = cargo;
 		this.endereco = endereco;
+		this.email = email;
 		this.telefoneFixo = telefoneFixo;
 		this.celular = celular;
-		this.email = email;
+		this.genero = genero;
+		this.cargo = cargo;
 		this.salario = salario;
 		this.dataContratacao = dataContratacao;
 		this.dataNascimento = dataNascimento;
+		this.ativo = ativo;
+		this.departamento = departamento;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", genero=" + genero + ", Cargo=" + cargo + ", endereco="
-				+ endereco + ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", email=" + email
+		return "Funcionario [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", email=" + email
+				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", genero=" + genero + ", cargo=" + cargo
 				+ ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", dataNascimento=" + dataNascimento
-				+ "]";
+				+ ", ativo=" + ativo + ", departamento=" + departamento + "]";
 	}
+
 	
 }
