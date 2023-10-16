@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_dept")
@@ -17,31 +18,40 @@ public class Departamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_dept")
 	private Integer id;
-	
+
+	@NotNull
 	@Column(name = "nome_dept")
 	private String nome;
 	
-	@Column(name = "endereco_dept")
-	private String endereco;
-	
-	@Column(name = "email_dept")
-	private String email;
-	
-	@Column(name = "telefone_fixo_dept")
-	private String telefoneFixo;
-	
-	@Column(name = "celular_dept")
-	private String celular;
-	
+	@NotNull
 	@Column(name = "descricao_dept")
 	private String descricao;
-	
+
+	@NotNull
+	@Column(name = "endereco_dept")
+	private String endereco;
+
+	@NotNull
+	@Column(name = "email_dept")
+	private String email;
+
+	@NotNull
+	@Column(name = "telefone_fixo_dept")
+	private String telefoneFixo;
+
+	@NotNull
+	@Column(name = "celular_dept")
+	private String celular;
+
+	@NotNull
 	@Column(name = "data_criacao_dept")
 	private LocalDate dataCriacao;
-	
+
+	@NotNull
 	@Column(name = "orcamento_dept")
 	private Double orcamento;
-	
+
+	@NotNull
 	@Column(name = "ativo_dept")
 	private Boolean ativo;
 

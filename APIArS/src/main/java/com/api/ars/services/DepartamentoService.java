@@ -48,9 +48,6 @@ public class DepartamentoService {
 		if (departamento.getCelular() != null) {
 			registroAntigo.setCelular(departamento.getCelular());
 		}
-		if (departamento.getNome() != null) {
-			registroAntigo.setNome(departamento.getNome());
-		}
 		if (departamento.getDescricao() != null) {
 			registroAntigo.setDescricao(departamento.getDescricao());
 		}
@@ -63,8 +60,12 @@ public class DepartamentoService {
 	}
 	
 	//DELETE
-	public void remover(Integer id) {
-		departamentoRepository.deleteById(id);
+	public void removerLogico(Integer id) {
+		Departamento departamento = buscarPorId(id);
+
+		if (departamento != null) {
+			departamento.setAtivo(false);
+			departamentoRepository.save(departamento);
+		}
 	}
-	
 }
