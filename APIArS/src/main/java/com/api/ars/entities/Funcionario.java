@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,22 +21,18 @@ public class Funcionario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_func")
 	private Integer id;
-	
+
 	@NotNull
 	@Column(name = "nome_func")
 	private String nome;
-	
+
 	@NotNull
 	@Column(name = "cpf_func")
 	private String cpf;
-	
+
 	@NotNull
 	@Column(name = "senha_func")
 	private String senha;
-
-	@NotNull
-	@Column(name = "endereco_func")
-	private String endereco;
 
 	@NotNull
 	@Column(name = "email_func")
@@ -72,11 +69,15 @@ public class Funcionario {
 	@NotNull
 	@Column(name = "ativo_func")
 	private Boolean ativo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
 	private Departamento departamento;
-	
+
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+
 	public Integer getId() {
 		return id;
 	}
@@ -97,6 +98,14 @@ public class Funcionario {
 		return genero;
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
@@ -107,14 +116,6 @@ public class Funcionario {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getCpf() {
@@ -201,15 +202,14 @@ public class Funcionario {
 	}
 
 	public Funcionario(Integer id, @NotNull String nome, @NotNull String cpf, @NotNull String senha,
-			@NotNull String endereco, @NotNull String email, @NotNull String telefoneFixo, @NotNull String celular,
-			@NotNull String genero, @NotNull String cargo, @NotNull Double salario, @NotNull LocalDate dataContratacao,
-			@NotNull LocalDate dataNascimento, @NotNull Boolean ativo, Departamento departamento) {
+			@NotNull String email, @NotNull String telefoneFixo, @NotNull String celular, @NotNull String genero,
+			@NotNull String cargo, @NotNull Double salario, @NotNull LocalDate dataContratacao,
+			@NotNull LocalDate dataNascimento, @NotNull Boolean ativo, Departamento departamento, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.senha = senha;
-		this.endereco = endereco;
 		this.email = email;
 		this.telefoneFixo = telefoneFixo;
 		this.celular = celular;
@@ -220,15 +220,15 @@ public class Funcionario {
 		this.dataNascimento = dataNascimento;
 		this.ativo = ativo;
 		this.departamento = departamento;
+		this.endereco = endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + ", endereco="
-				+ endereco + ", email=" + email + ", telefoneFixo=" + telefoneFixo + ", celular=" + celular
-				+ ", genero=" + genero + ", cargo=" + cargo + ", salario=" + salario + ", dataContratacao="
-				+ dataContratacao + ", dataNascimento=" + dataNascimento + ", ativo=" + ativo + ", departamento="
-				+ departamento + "]";
+		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + ", email=" + email
+				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", genero=" + genero + ", cargo=" + cargo
+				+ ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", dataNascimento=" + dataNascimento
+				+ ", ativo=" + ativo + ", departamento=" + departamento + ", endereco=" + endereco + "]";
 	}
-	
+
 }

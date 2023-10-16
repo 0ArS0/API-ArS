@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_dept")
 public class Departamento {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_dept")
@@ -22,14 +24,10 @@ public class Departamento {
 	@NotNull
 	@Column(name = "nome_dept")
 	private String nome;
-	
+
 	@NotNull
 	@Column(name = "descricao_dept")
 	private String descricao;
-
-	@NotNull
-	@Column(name = "endereco_dept")
-	private String endereco;
 
 	@NotNull
 	@Column(name = "email_dept")
@@ -55,6 +53,10 @@ public class Departamento {
 	@Column(name = "ativo_dept")
 	private Boolean ativo;
 
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+
 	public Integer getId() {
 		return id;
 	}
@@ -69,14 +71,6 @@ public class Departamento {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getDescricao() {
@@ -97,6 +91,14 @@ public class Departamento {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public void setEmail(String email) {
@@ -138,26 +140,27 @@ public class Departamento {
 	public Departamento() {
 	}
 
-	public Departamento(Integer id, String nome, String endereco, String email, String telefoneFixo, String celular,
-			String descricao, LocalDate dataCriacao, Double orcamento, Boolean ativo) {
+	public Departamento(Integer id, @NotNull String nome, @NotNull String descricao, @NotNull String email,
+			@NotNull String telefoneFixo, @NotNull String celular, @NotNull LocalDate dataCriacao,
+			@NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.endereco = endereco;
+		this.descricao = descricao;
 		this.email = email;
 		this.telefoneFixo = telefoneFixo;
 		this.celular = celular;
-		this.descricao = descricao;
 		this.dataCriacao = dataCriacao;
 		this.orcamento = orcamento;
 		this.ativo = ativo;
+		this.endereco = endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", email=" + email
-				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", descricao=" + descricao
-				+ ", dataCriacao=" + dataCriacao + ", orcamento=" + orcamento + ", ativo=" + ativo + "]";
+		return "Departamento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", email=" + email
+				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", dataCriacao=" + dataCriacao
+				+ ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco=" + endereco + "]";
 	}
 
 }

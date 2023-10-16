@@ -28,7 +28,7 @@ public class SwaggerConfig {
                 .title("Documentação Projeto Individual | Departamento - Funcionario")
                 .description("Projeto Individual SpringBoot - Arthur da Silva Monteiro")
                 .license("Apache license version 2.0")
-                .version("4.0.0")
+                .version("4.1.0")
                 .build();
         return apiInfo;
     }
