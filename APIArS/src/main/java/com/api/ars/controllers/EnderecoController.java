@@ -1,4 +1,4 @@
-package com.api.ars.controller;
+package com.api.ars.controllers;
 
 import java.util.List;
 
