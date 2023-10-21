@@ -18,17 +18,17 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("br.com.api.g5.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("Documentação Projeto Individual | Departamento - Funcionario")
+                .title("Documentação Projeto Individual | Funcionario - Departamento ")
                 .description("Projeto Individual SpringBoot - Arthur da Silva Monteiro")
                 .license("Apache license version 2.0")
-                .version("5.0.0")
+                .version("5.0.1")
                 .build();
         return apiInfo;
     }
