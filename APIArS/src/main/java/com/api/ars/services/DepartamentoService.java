@@ -45,11 +45,11 @@ public class DepartamentoService {
 		if (departamento.getTelefoneFixo() != null) {
 			registroAntigo.setTelefoneFixo(departamento.getTelefoneFixo());
 		}
-		if (departamento.getDescricao() != null) {
-			registroAntigo.setDescricao(departamento.getDescricao());
-		}
 		if (departamento.getOrcamento() != null) {
 			registroAntigo.setOrcamento(departamento.getOrcamento());
+		}
+		if (departamento.getSetor() != null) {
+			registroAntigo.setSetor(departamento.getSetor());
 		}
 		
 		registroAntigo.setId(id);

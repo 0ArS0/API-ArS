@@ -3,6 +3,7 @@ package com.api.ars.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.ars.entities.Funcionario;
+import com.api.ars.dto.FuncionarioDTO;
+import com.api.ars.dto.FuncionarioGetDTO;
 import com.api.ars.services.FuncionarioService;
 
 @RestController
@@ -23,28 +25,34 @@ public class FuncionarioController {
 	FuncionarioService funcionarioService;
 	
 	@GetMapping("/buscar/{id}")
-	public Funcionario buscarPorId(@PathVariable Integer id) {
+	public FuncionarioGetDTO buscarPorId(@PathVariable Integer id) {
 		return funcionarioService.buscarPorId(id);
 	}
 
 	@GetMapping("/listar")
-	public List<Funcionario> listarTodos() {
+	public List<FuncionarioGetDTO> listarTodos() {
 		return funcionarioService.listarTodos();
 	}
 	
 	@PostMapping("/salvar")
-	public Funcionario salvar(@RequestBody Funcionario funcionario) {
-		return funcionarioService.salvar(funcionario);
-
+	public ResponseEntity<?> salvar(@RequestBody FuncionarioDTO funcionarioDTO) {
+		return funcionarioService.salvar(funcionarioDTO);
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public Funcionario atualizar(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
-		return funcionarioService.atualizar(id, funcionario);
+	public ResponseEntity<?> atualizar(@PathVariable Integer id, @RequestBody FuncionarioDTO funcionarioDTO) {
+		return funcionarioService.atualizar(id, funcionarioDTO);
+	}
+	
+	@PutMapping("/ativar/{id}")
+	public ResponseEntity<?> ativarLogico(@PathVariable Integer id) {
+		return funcionarioService.ativarLogico(id);
 	}
 	
 	@DeleteMapping("/remover/{id}")
-	public void removerLogico(@PathVariable Integer id) {
-		funcionarioService.removerLogico(id);
+	public ResponseEntity<?> removerLogico(@PathVariable Integer id) {
+		return funcionarioService.removerLogico(id);
 	}
+	
+	
 }

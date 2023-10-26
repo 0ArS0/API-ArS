@@ -1,61 +1,44 @@
 package com.api.ars.dto;
 
+import java.time.LocalDate;
 
 public class FuncionarioDTO {
 
-	private String nomeFuncionario;
-	private String email;
-	private String password;
+	private Double salario;
+	private LocalDate dataContratacao;
+	private Integer departamento;
 
-	private String cep;
-	private String numero;
-	
-	public FuncionarioDTO(String nomeFuncionario, String email, String password, String cep, String numero) {
-		this.nomeFuncionario = nomeFuncionario;
-		this.email = email;
-		this.password = password;
-		this.cep = cep;
-		this.numero = numero;
+	public FuncionarioDTO() {
 	}
-	
-	public String getNomeUsuario() {
-		return nomeFuncionario;
+
+	public FuncionarioDTO(Double salario, LocalDate dataContratacao, Integer departamento) {
+		super();
+		this.salario = salario;
+		this.dataContratacao = dataContratacao;
+		this.departamento = departamento;
 	}
-	
-	public void setNomeUsuario(String nomeFuncionario) {
-		this.nomeFuncionario = nomeFuncionario;
+
+	public Integer getDepartamento() {
+		return departamento;
 	}
-	
-	public String getEmail() {
-		return email;
+
+	public void setDepartamento(Integer departamento) {
+		this.departamento = departamento;
 	}
-	
-	public void setEmail(String email) {
-		this.email = email;
+
+	public Double getSalario() {
+		return salario;
 	}
-	
-	public String getPassword() {
-		return password;
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
 	}
-	
-	public void setPassword(String password) {
-		this.password = password;
+
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
 	}
-	
-	public String getCep() {
-		return cep;
+
+	public void setDataContratacao(LocalDate dataContratacao) {
+		this.dataContratacao = dataContratacao;
 	}
-	
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	
-	public String getNumero() {
-		return numero;
-	}
-	
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-	
 }

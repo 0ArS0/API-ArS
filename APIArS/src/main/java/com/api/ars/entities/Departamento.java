@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,10 +23,6 @@ public class Departamento {
 	@NotNull
 	@Column(name = "nome_departamento")
 	private String nome;
-
-	@NotNull
-	@Column(name = "descricao_departamento")
-	private String descricao;
 
 	@NotNull
 	@Column(name = "email_departamento")
@@ -47,22 +44,34 @@ public class Departamento {
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
+	@ManyToOne
+	@JoinColumn(name = "setor_id")
+	private Setor setor;
+
 	public Departamento() {
 	}
 
-	public Departamento(Integer id, @NotNull String nome, @NotNull String descricao, @NotNull String email,
-			@NotNull String telefoneFixo, @NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco) {
+	public Departamento(Integer id, @NotNull String nome, @NotNull String email, @NotNull String telefoneFixo,
+			@NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco, Setor setor) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
 		this.email = email;
 		this.telefoneFixo = telefoneFixo;
 		this.orcamento = orcamento;
 		this.ativo = ativo;
 		this.endereco = endereco;
+		this.setor = setor;
 	}
-	
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -77,14 +86,6 @@ public class Departamento {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public String getTelefoneFixo() {
@@ -127,14 +128,10 @@ public class Departamento {
 		this.ativo = ativo;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", email=" + email
-				+ ", telefoneFixo=" + telefoneFixo + ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco="
-				+ endereco + "]";
+		return "Departamento [id=" + id + ", nome=" + nome + ", email=" + email + ", telefoneFixo=" + telefoneFixo
+				+ ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco=" + endereco + ", setor=" + setor + "]";
 	}
-
 
 }

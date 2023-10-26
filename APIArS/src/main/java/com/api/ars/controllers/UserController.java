@@ -85,7 +85,7 @@ public class UserController {
 		enderecos.add(enderecoNovo);
 		
 		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_USUARIO)
 					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
 			roles.add(userRole);
 		} else {
@@ -111,8 +111,8 @@ public class UserController {
 					userService.save(usuarioResumido);
 					funcionario.setUser(userService.findById(usuarioResumido.getIdUser()));
 					break;
-				case "CLIENTE":
-					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+				case "USUARIO":
+					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_USUARIO)
 							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
 					roles.add(userRole);
 				}

@@ -30,10 +30,13 @@ public class Funcionario {
 	@Column(name = "data_contratacao")
 	private LocalDate dataContratacao;
 
+	@Column
+	private Boolean ativo = true;
+
 	@ManyToOne
 	@JoinColumn(name = "departamento_id")
 	private Departamento departamento;
-	
+
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -41,14 +44,23 @@ public class Funcionario {
 	public Funcionario() {
 	}
 
-	public Funcionario(Integer id, @NotNull Double salario, @NotNull LocalDate dataContratacao,
+	public Funcionario(Integer id, @NotNull Double salario, @NotNull LocalDate dataContratacao, Boolean ativo,
 			Departamento departamento, User user) {
 		super();
 		this.id = id;
 		this.salario = salario;
 		this.dataContratacao = dataContratacao;
+		this.ativo = ativo;
 		this.departamento = departamento;
 		this.user = user;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Integer getId() {
@@ -91,5 +103,10 @@ public class Funcionario {
 		this.user = user;
 	}
 
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", ativo="
+				+ ativo + ", departamento=" + departamento + ", user=" + user + "]";
+	}
 
 }

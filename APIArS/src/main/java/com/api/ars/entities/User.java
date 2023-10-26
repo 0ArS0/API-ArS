@@ -1,4 +1,4 @@
-package com.api.ars.entities;
+	package com.api.ars.entities;
 
 import java.time.LocalDate;
 import java.util.Set;

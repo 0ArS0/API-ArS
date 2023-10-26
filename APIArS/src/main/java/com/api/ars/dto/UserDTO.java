@@ -16,8 +16,8 @@ public class UserDTO {
     private String cep;
 	private String numero;
 	private String complementoAdicional;
-	private Set<String> roles;
 	private LocalDate dataNascimento;
+	private Set<String> roles;
 
 	public UserDTO() {
 	}
