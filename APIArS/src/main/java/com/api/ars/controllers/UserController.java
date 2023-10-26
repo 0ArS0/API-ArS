@@ -113,7 +113,7 @@ public class UserController {
 			User usuarioResumido = new User();
 			usuarioResumido.setNomeUsuario(user.getNomeUsuario());
 			usuarioResumido.setEmail(user.getEmail());
-			usuarioResumido.setIdUser(user.getIdUser());
+			usuarioResumido.setId(user.getId());
 			usuarioResumido.setRoles(user.getRoles());
 			String token = jwtUtil.generateTokenWithUserData(usuarioResumido);
 

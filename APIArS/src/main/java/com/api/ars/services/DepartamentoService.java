@@ -45,9 +45,6 @@ public class DepartamentoService {
 		if (departamento.getTelefoneFixo() != null) {
 			registroAntigo.setTelefoneFixo(departamento.getTelefoneFixo());
 		}
-		if (departamento.getCelular() != null) {
-			registroAntigo.setCelular(departamento.getCelular());
-		}
 		if (departamento.getDescricao() != null) {
 			registroAntigo.setDescricao(departamento.getDescricao());
 		}

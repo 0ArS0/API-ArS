@@ -14,69 +14,40 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_func")
+@Table(name = "tb_funcionario")
 public class Funcionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_func")
+	@Column(name = "id_funcionario")
 	private Integer id;
 
 	@NotNull
-	@Column(name = "nome_func")
-	private String nome;
-
-	@NotNull
-	@Column(name = "cpf_func")
-	private String cpf;
-
-	@NotNull
-	@Column(name = "senha_func")
-	private String senha;
-
-	@NotNull
-	@Column(name = "email_func")
-	private String email;
-
-	@NotNull
-	@Column(name = "telefone_fixo_func")
-	private String telefoneFixo;
-
-	@NotNull
-	@Column(name = "celular_func")
-	private String celular;
-
-	@NotNull
-	@Column(name = "genero_func")
-	private String genero;
-
-	@NotNull
-	@Column(name = "cargo_func")
-	private String cargo;
-
-	@NotNull
-	@Column(name = "salario_func")
+	@Column(name = "salario")
 	private Double salario;
 
 	@NotNull
-	@Column(name = "data_contratacao_func")
+	@Column(name = "data_contratacao")
 	private LocalDate dataContratacao;
 
-	@NotNull
-	@Column(name = "data_nascimento_func")
-	private LocalDate dataNascimento;
-
-	@NotNull
-	@Column(name = "ativo_func")
-	private Boolean ativo;
-
 	@ManyToOne
-	@JoinColumn(name = "dept_id")
+	@JoinColumn(name = "departamento_id")
 	private Departamento departamento;
-
+	
 	@OneToOne
-	@JoinColumn(name = "endereco_id")
-	private Endereco endereco;
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public Funcionario() {
+	}
+
+	public Funcionario(Integer id, @NotNull Double salario, @NotNull LocalDate dataContratacao,
+			Departamento departamento) {
+		this.id = id;
+		this.salario = salario;
+		this.dataContratacao = dataContratacao;
+		this.departamento = departamento;
+	}
 
 	public Integer getId() {
 		return id;
@@ -84,78 +55,6 @@ public class Funcionario {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getTelefoneFixo() {
-		return telefoneFixo;
-	}
-
-	public void setTelefoneFixo(String telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public Double getSalario() {
@@ -174,61 +73,12 @@ public class Funcionario {
 		this.dataContratacao = dataContratacao;
 	}
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
 	public Departamento getDepartamento() {
 		return departamento;
 	}
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
-	}
-
-	public Funcionario() {
-	}
-
-	public Funcionario(Integer id, @NotNull String nome, @NotNull String cpf, @NotNull String senha,
-			@NotNull String email, @NotNull String telefoneFixo, @NotNull String celular, @NotNull String genero,
-			@NotNull String cargo, @NotNull Double salario, @NotNull LocalDate dataContratacao,
-			@NotNull LocalDate dataNascimento, @NotNull Boolean ativo, Departamento departamento, Endereco endereco) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.senha = senha;
-		this.email = email;
-		this.telefoneFixo = telefoneFixo;
-		this.celular = celular;
-		this.genero = genero;
-		this.cargo = cargo;
-		this.salario = salario;
-		this.dataContratacao = dataContratacao;
-		this.dataNascimento = dataNascimento;
-		this.ativo = ativo;
-		this.departamento = departamento;
-		this.endereco = endereco;
-	}
-
-	@Override
-	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + ", email=" + email
-				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", genero=" + genero + ", cargo=" + cargo
-				+ ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", dataNascimento=" + dataNascimento
-				+ ", ativo=" + ativo + ", departamento=" + departamento + ", endereco=" + endereco + "]";
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.api.ars.entities;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,50 +11,58 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_dept")
+@Table(name = "tb_departamento")
 public class Departamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_dept")
+	@Column(name = "id_departamento")
 	private Integer id;
 
 	@NotNull
-	@Column(name = "nome_dept")
+	@Column(name = "nome_departamento")
 	private String nome;
 
 	@NotNull
-	@Column(name = "descricao_dept")
+	@Column(name = "descricao_departamento")
 	private String descricao;
 
 	@NotNull
-	@Column(name = "email_dept")
+	@Column(name = "email_departamento")
 	private String email;
 
 	@NotNull
-	@Column(name = "telefone_fixo_dept")
+	@Column(name = "telefone_departamento")
 	private String telefoneFixo;
 
 	@NotNull
-	@Column(name = "celular_dept")
-	private String celular;
-
-	@NotNull
-	@Column(name = "data_criacao_dept")
-	private LocalDate dataCriacao;
-
-	@NotNull
-	@Column(name = "orcamento_dept")
+	@Column(name = "orcamento_departamento")
 	private Double orcamento;
 
 	@NotNull
-	@Column(name = "ativo_dept")
+	@Column(name = "ativo_departamento")
 	private Boolean ativo;
 
 	@OneToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
+	public Departamento() {
+	}
+
+	public Departamento(Integer id, @NotNull String nome, @NotNull String descricao, @NotNull String email,
+			@NotNull String telefoneFixo, @NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.email = email;
+		this.telefoneFixo = telefoneFixo;
+		this.orcamento = orcamento;
+		this.ativo = ativo;
+		this.endereco = endereco;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -105,22 +111,6 @@ public class Departamento {
 		this.email = email;
 	}
 
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
-	public LocalDate getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(LocalDate dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
 	public Double getOrcamento() {
 		return orcamento;
 	}
@@ -137,30 +127,14 @@ public class Departamento {
 		this.ativo = ativo;
 	}
 
-	public Departamento() {
-	}
-
-	public Departamento(Integer id, @NotNull String nome, @NotNull String descricao, @NotNull String email,
-			@NotNull String telefoneFixo, @NotNull String celular, @NotNull LocalDate dataCriacao,
-			@NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.email = email;
-		this.telefoneFixo = telefoneFixo;
-		this.celular = celular;
-		this.dataCriacao = dataCriacao;
-		this.orcamento = orcamento;
-		this.ativo = ativo;
-		this.endereco = endereco;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Departamento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", email=" + email
-				+ ", telefoneFixo=" + telefoneFixo + ", celular=" + celular + ", dataCriacao=" + dataCriacao
-				+ ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco=" + endereco + "]";
+				+ ", telefoneFixo=" + telefoneFixo + ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco="
+				+ endereco + "]";
 	}
+
 
 }
