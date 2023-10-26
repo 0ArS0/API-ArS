@@ -3,7 +3,6 @@ package com.api.ars.entities;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,70 +27,83 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+	private Integer idUser;
+
 	@NotNull(message = "Campo nome de funcionário não pode ser nulo")
-	@Column(name =" nome_usuario")
 	private String nomeUsuario;
-	
+
 	@NotNull(message = "Campo nome de funcionário não pode ser nulo")
-	@Column(name = "nome_completo")
 	private String nomeCompleto;
-	
+
 	@Email
 	@NotNull(message = "Campo e-mail não pode ser nulo")
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
-	@Column(name = "email_user")
 	private String email;
-	
+
 	@CPF
 	@Size(max = 14)
 	@NotNull(message = "Campo CPF não pode ser nulo")
-	@Column(name = "cpf_user")
 	private String cpf;
-	
+
 	@NotNull(message = "Campo data de nascimento não pode ser nulo")
-	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
-	
+
 	@Pattern(regexp = "\\(\\d{2}\\) \\d{4}-\\d{4}")
-	@Column(name = "telefone_user")
 	private String telefone;
-	
+
 	@Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}")
-	@Column(name = "celular_user")
 	private String celular;
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull(message = "Campo senha não pode ser nulo")
-	@Column(name = "password_funcionario")
 	private String password;
-	
-	@Column(name = "ativo_user")
+
 	private Boolean ativo = true;
 
 	@ManyToMany
-	@JoinTable(name = "usuario_role",
-		joinColumns = @JoinColumn(name = "usuario_id"),
-		inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "usuario_role", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
+
 	@OneToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
+
+	public User(Integer idUser, @NotNull(message = "Campo nome de funcionário não pode ser nulo") String nomeUsuario,
+			@NotNull(message = "Campo nome de funcionário não pode ser nulo") String nomeCompleto,
+			@Email @NotNull(message = "Campo e-mail não pode ser nulo") @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$") String email,
+			@CPF @Size(max = 14) @NotNull(message = "Campo CPF não pode ser nulo") String cpf,
+			@NotNull(message = "Campo data de nascimento não pode ser nulo") LocalDate dataNascimento,
+			@Pattern(regexp = "\\(\\d{2}\\) \\d{4}-\\d{4}") String telefone,
+			@Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}") String celular,
+			@NotNull(message = "Campo senha não pode ser nulo") String password, Boolean ativo, Set<Role> roles,
+			Endereco endereco) {
+		super();
+		this.idUser = idUser;
+		this.nomeUsuario = nomeUsuario;
+		this.nomeCompleto = nomeCompleto;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.telefone = telefone;
+		this.celular = celular;
+		this.password = password;
+		this.ativo = ativo;
+		this.roles = roles;
+		this.endereco = endereco;
+	}
+
 	public User() {
 		super();
-	}
-	
-	public Integer getId() {
-		return id;
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer getIdUser() {
+		return idUser;
 	}
 
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
 
 	public String getNomeUsuario() {
 		return nomeUsuario;
@@ -181,36 +193,4 @@ public class User {
 		this.endereco = endereco;
 	}
 
-	public User(Integer id, @NotNull(message = "Campo nome de funcionário não pode ser nulo") String nomeUsuario,
-			@NotNull(message = "Campo nome de funcionário não pode ser nulo") String nomeCompleto,
-			@Email @NotNull(message = "Campo e-mail não pode ser nulo") @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$") String email,
-			@CPF @Size(max = 14) @NotNull(message = "Campo CPF não pode ser nulo") String cpf,
-			@NotNull(message = "Campo data de nascimento não pode ser nulo") LocalDate dataNascimento,
-			@Pattern(regexp = "\\(\\d{2}\\) \\d{4}-\\d{4}") String telefone,
-			@Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}") String celular,
-			@NotNull(message = "Campo senha não pode ser nulo") String password, Boolean ativo, Set<Role> roles,
-			Endereco endereco) {
-		super();
-		this.id = id;
-		this.nomeUsuario = nomeUsuario;
-		this.nomeCompleto = nomeCompleto;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.telefone = telefone;
-		this.celular = celular;
-		this.password = password;
-		this.ativo = ativo;
-		this.roles = roles;
-		this.endereco = endereco;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", nomeUsuario=" + nomeUsuario + ", nomeCompleto=" + nomeCompleto + ", email=" + email
-				+ ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", telefone=" + telefone + ", celular="
-				+ celular + ", password=" + password + ", ativo=" + ativo + ", roles=" + roles + ", endereco="
-				+ endereco + "]";
-	}
-	
 }

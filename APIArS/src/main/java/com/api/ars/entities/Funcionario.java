@@ -42,11 +42,13 @@ public class Funcionario {
 	}
 
 	public Funcionario(Integer id, @NotNull Double salario, @NotNull LocalDate dataContratacao,
-			Departamento departamento) {
+			Departamento departamento, User user) {
+		super();
 		this.id = id;
 		this.salario = salario;
 		this.dataContratacao = dataContratacao;
 		this.departamento = departamento;
+		this.user = user;
 	}
 
 	public Integer getId() {
@@ -80,5 +82,14 @@ public class Funcionario {
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 }

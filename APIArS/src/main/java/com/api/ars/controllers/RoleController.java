@@ -1,5 +1,7 @@
 package com.api.ars.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,12 @@ public class RoleController {
 	RoleService roleService;
 
 	@PostMapping
-	public ResponseEntity<Role> save(@RequestBody Role role) {
+	public ResponseEntity<String> save(@Valid @RequestBody Role role) {
 		Role newRole = roleService.save(role);
 		if (newRole != null)
-			return new ResponseEntity<>(newRole, HttpStatus.CREATED);
+			return ResponseEntity.status(HttpStatus.CREATED).body("Cargo "+ newRole.getName() + " adicionado!");
 		else
-			return new ResponseEntity<>(newRole, HttpStatus.BAD_REQUEST);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
 	}
 
 }

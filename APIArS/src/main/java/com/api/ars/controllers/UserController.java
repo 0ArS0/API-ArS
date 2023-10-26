@@ -1,11 +1,15 @@
 package com.api.ars.controllers;
  
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -20,11 +24,13 @@ import com.api.ars.config.JWTUtil;
 import com.api.ars.dto.LoginDTO;
 import com.api.ars.dto.UserDTO;
 import com.api.ars.entities.Endereco;
+import com.api.ars.entities.Funcionario;
 import com.api.ars.entities.Role;
 import com.api.ars.entities.User;
 import com.api.ars.enums.TipoRoleEnum;
 import com.api.ars.repositories.EnderecoRepository;
 import com.api.ars.repositories.RoleRepository;
+import com.api.ars.services.EmailService;
 import com.api.ars.services.EnderecoService;
 import com.api.ars.services.UserService;
 
@@ -32,7 +38,12 @@ import com.api.ars.services.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-
+	private EmailService emailService;
+    @Autowired
+    public void setEmailService(EmailService emailService) {
+        this.emailService = emailService;
+    }
+    
 	@Autowired
 	UserService userService;
 
@@ -55,30 +66,10 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/registro")
-	public User cadastro(@RequestParam String email, @RequestBody UserDTO user) {
+	public ResponseEntity<String> cadastro(@RequestParam String email, @Valid @RequestBody UserDTO user) {
 
 		Set<String> strRoles = user.getRoles();
 		Set<Role> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
-					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "FUNCIONARIO":
-					Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_FUNCIONARIO)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(adminRole);
-					break;
-				case "CLIENTE":
-					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(userRole);
-				}
-			});
-		}
 
 		Endereco viaCep = enderecoService.pesquisarEndereco(user.getCep());
 		Endereco enderecoNovo = new Endereco();
@@ -90,34 +81,73 @@ public class UserController {
 		enderecoNovo.setNumero(user.getNumero());
 		enderecoNovo.setUf(viaCep.getUf());
 		enderecoRepository.save(enderecoNovo);
+		List<Endereco> enderecos = new ArrayList<>();
+		enderecos.add(enderecoNovo);
+		
+		if (strRoles == null) {
+			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+			roles.add(userRole);
+		} else {
+			strRoles.forEach(role -> {
+				switch (role) {
+				case "FUNCIONARIO":
+					Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_FUNCIONARIO)
+							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+					roles.add(adminRole);
+					User usuarioResumido = new User();
+					Funcionario funcionario = new Funcionario();
+					String encodedPass = passwordEncoder.encode(user.getPassword());
+					usuarioResumido.setNomeUsuario(user.getNomeUsuario());
+					usuarioResumido.setEmail(user.getEmail());
+					usuarioResumido.setNomeCompleto(user.getNome());
+					usuarioResumido.setCelular(user.getCelular());
+					usuarioResumido.setTelefone(user.getTelefoneFixo());
+					usuarioResumido.setCpf(user.getCpf());	
+					usuarioResumido.setDataNascimento(user.getDataNascimento());
+					usuarioResumido.setRoles(roles);
+					usuarioResumido.setPassword(encodedPass);
+					usuarioResumido.setEndereco(enderecoNovo);
+					userService.save(usuarioResumido);
+					funcionario.setUser(userService.findById(usuarioResumido.getIdUser()));
+					break;
+				case "CLIENTE":
+					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+					roles.add(userRole);
+				}
+			});
+		}
 
-		User usuarioResumido = new User();
-		usuarioResumido.setNomeUsuario(user.getNomeUsuario());
-		usuarioResumido.setEmail(user.getEmail());
-		usuarioResumido.setRoles(roles);
-		String encodedPass = passwordEncoder.encode(user.getPassword());
-		usuarioResumido.setPassword(encodedPass);
-
-		return userService.save(usuarioResumido);
+		emailService.envioEmailCadastro(user);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body("Cadastro efetuado com sucesso!");
 	}
 	
 	@PostMapping("/login")
-	public Map<String, Object> login(@RequestBody LoginDTO body) {
+	public ResponseEntity<String> login(@Valid @RequestBody LoginDTO body) {
 		try {
 			UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
 					body.getEmail(), body.getPassword());
 
 			authManager.authenticate(authInputToken);
-
+			
 			User user = userService.findByEmail(body.getEmail());
 			User usuarioResumido = new User();
+			
 			usuarioResumido.setNomeUsuario(user.getNomeUsuario());
 			usuarioResumido.setEmail(user.getEmail());
-			usuarioResumido.setId(user.getId());
+			usuarioResumido.setNomeCompleto(user.getNomeCompleto());
+			usuarioResumido.setCelular(user.getCelular());
+			usuarioResumido.setTelefone(user.getTelefone());
+			usuarioResumido.setCpf(user.getCpf());
+			usuarioResumido.setDataNascimento(user.getDataNascimento());
+			usuarioResumido.setIdUser(user.getIdUser());
 			usuarioResumido.setRoles(user.getRoles());
+			
 			String token = jwtUtil.generateTokenWithUserData(usuarioResumido);
 
-			return Collections.singletonMap("jwt-token", token);
+			return ResponseEntity.status(HttpStatus.OK).body("Login efetuado com sucesso!\n\nToken:"+token);
 		} catch (AuthenticationException authExc) {
 			throw new RuntimeException("Credenciais Invalidas");
 		}

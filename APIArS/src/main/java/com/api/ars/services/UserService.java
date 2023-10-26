@@ -25,10 +25,9 @@ public class UserService {
 	public List<User> listarTodos() {
 		return userRepository.findAll();
 	}
-
-	public void remover(Integer id) {
-		User user = userRepository.findById(id).get();
-		userRepository.deleteById(id);
+	
+	public User findById(Integer id) {
+		return userRepository.findById(id).get();
 	}
-
+	
 }
