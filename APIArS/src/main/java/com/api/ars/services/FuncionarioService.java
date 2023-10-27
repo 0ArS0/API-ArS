@@ -1,6 +1,6 @@
 package com.api.ars.services;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +39,13 @@ public class FuncionarioService {
         this.emailService = emailService;
     }
 
-	// GET Id
 	public FuncionarioGetDTO buscarPorId(Integer id) {
 		FuncionarioGetDTO infoFuncionario = new FuncionarioGetDTO();
 		Funcionario funcionario = funcionarioRepository.findById(id).get();
 		infoFuncionario = conversorGet(funcionario);
 		return infoFuncionario;
 	}
-
-	// GET Listar
+	
 	public List<FuncionarioGetDTO> listarTodos() {
 		List<FuncionarioGetDTO> infoFuncionarios = new ArrayList<>();
 		List<Funcionario> funcionarios = funcionarioRepository.findAll();
@@ -57,7 +55,6 @@ public class FuncionarioService {
 		return infoFuncionarios;
 	}
 
-	// POST
 	public ResponseEntity<String> salvar(FuncionarioDTO funcionarioDTO) {
 		Funcionario salvarFuncionario = new Funcionario();
 		salvarFuncionario.setSalario(funcionarioDTO.getSalario());

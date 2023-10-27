@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.ars.dto.DepartamentoDTO;
-import com.api.ars.entities.Departamento;
 import com.api.ars.services.DepartamentoService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/departamento")
@@ -24,26 +27,66 @@ public class DepartamentoController {
 	@Autowired
 	DepartamentoService departamentoService;
 	
+	@ApiOperation(value="Retorna um departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Retorna um departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@GetMapping("/buscar/{id}")
 	public DepartamentoDTO buscarPorId(@PathVariable Integer id) {
 		return departamentoService.buscarPorId(id);
 	}
 	
+	@ApiOperation(value="Lista todos os departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Lista todos os departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@GetMapping("/listar")
 	public List<DepartamentoDTO> listarTodos() {
 		return departamentoService.listarTodos();
 	}
 	
+	@ApiOperation(value="Cria um departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Cria um departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@PostMapping("/salvar")
 	public ResponseEntity<String> salvar(@RequestBody DepartamentoDTO departamentoDTO) {
 		return departamentoService.salvar(departamentoDTO);
 	}
 	
+	@ApiOperation(value="Atualiza um departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Atualiza um departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@PutMapping("/atualizar/{id}")
 	public DepartamentoDTO atualizar(@PathVariable Integer id, @RequestBody DepartamentoDTO departamentoDTO) {
 		return departamentoService.atualizar(id, departamentoDTO);
 	}
 	
+	@ApiOperation(value="Remove um departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Remove um departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@DeleteMapping("/remover/{id}")
 	public void removerLogico(@PathVariable Integer id) {
 		departamentoService.removerLogico(id);
