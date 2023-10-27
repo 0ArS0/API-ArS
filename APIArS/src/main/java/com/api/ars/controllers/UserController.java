@@ -119,7 +119,7 @@ public class UserController {
 				}
 			});
 		}
-
+		
 		emailService.envioEmailCadastro(user);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body("Cadastro efetuado com sucesso!");
@@ -153,5 +153,6 @@ public class UserController {
 			throw new RuntimeException("Credenciais Invalidas");
 		}
 	}
+	
 
 }

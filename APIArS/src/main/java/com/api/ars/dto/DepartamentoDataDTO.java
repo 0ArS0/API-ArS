@@ -2,17 +2,15 @@ package com.api.ars.dto;
 
 public class DepartamentoDataDTO {
 	
-	private String nomeDepartamento;
 	private String localidadeDepartamento;
 	private String cepDepartamento;
 	private String emailDepartamento;
 	private String telefoneDepartamento;
 	private String setorDepartamento;
 
-	public DepartamentoDataDTO(String nomeDepartamento, String localidadeDepartamento, String cepDepartamento,
+	public DepartamentoDataDTO(String localidadeDepartamento, String cepDepartamento,
 			String emailDepartamento, String telefoneDepartamento, String setorDepartamento) {
 		super();
-		this.nomeDepartamento = nomeDepartamento;
 		this.localidadeDepartamento = localidadeDepartamento;
 		this.cepDepartamento = cepDepartamento;
 		this.emailDepartamento = emailDepartamento;
@@ -21,14 +19,6 @@ public class DepartamentoDataDTO {
 	}
 
 	public DepartamentoDataDTO() {
-	}
-
-	public String getNomeDepartamento() {
-		return nomeDepartamento;
-	}
-
-	public void setNomeDepartamento(String nomeDepartamento) {
-		this.nomeDepartamento = nomeDepartamento;
 	}
 
 	public String getLocalidadeDepartamento() {

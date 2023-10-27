@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .httpBasic().disable()
                 .authorizeHttpRequests()
                 .antMatchers("/user/registro", "/user/login").permitAll()
-                .antMatchers("funcionario/buscar/{id}", "funcionario/listar", "funcionario/salvar","/funcionario/remover/{id}", "funcionario/atualizar/{id}").hasRole("FUNCIONARIO")
+                .antMatchers("funcionario/buscar/{id}", "funcionario/listar", "funcionario/salvar", "funcionario/atualizar/{id}").hasRole("FUNCIONARIO")
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()

@@ -14,19 +14,19 @@ public class DepartamentoDTO {
 
 	public DepartamentoDTO() {
 	}
-
-	public DepartamentoDTO(String email, String cep, Double orcamento, String nomeSetor,
-			String telefoneFixo, String numero, String complemento) {
+	
+	public DepartamentoDTO(String email, String telefoneFixo, Double orcamento, String nomeSetor, String cep,
+			String numero, String complemento) {
 		super();
 		this.email = email;
-		this.cep = cep;
+		this.telefoneFixo = telefoneFixo;
 		this.orcamento = orcamento;
 		this.nomeSetor = nomeSetor;
-		this.telefoneFixo = telefoneFixo;
+		this.cep = cep;
 		this.numero = numero;
 		this.complemento = complemento;
 	}
-	
+
 	public String getComplemento() {
 		return complemento;
 	}

@@ -32,6 +32,12 @@ public class FuncionarioService {
 
 	@Autowired
 	DepartamentoRepository departamentoRepository;
+	
+	private EmailService emailService;
+    @Autowired
+    public void setEmailService(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
 	// GET Id
 	public FuncionarioGetDTO buscarPorId(Integer id) {
@@ -61,9 +67,8 @@ public class FuncionarioService {
 		salvarFuncionario.setUser(userRepository.findByNomeUsuario(funcionarioDTO.getNomeUsuario()));
 		funcionarioRepository.save(salvarFuncionario);
 
-		// Disparo email (pendente)
 		return ResponseEntity.status(HttpStatus.OK)
-				.body("Contratação do funcionario realizada com sucesso, um email será enviado para o mesmo!");
+				.body("Contratação do funcionario realizada com sucesso!");
 	}
 
 	public FuncionarioDTO conversor(Funcionario funcionario) {
@@ -112,10 +117,11 @@ public class FuncionarioService {
 
 		registroAntigo.setId(id);
 		funcionarioRepository.save(registroAntigo);
-		// Disparo email (pendente)
 		return ResponseEntity.status(HttpStatus.OK).body("Atualização de dados realizada com sucesso!");
 	}
-
+	
+	
+	
 	// DELETE
 	public ResponseEntity<String> removerLogico(Integer id) {
 		Funcionario funcionario = funcionarioRepository.findById(id).get();
@@ -125,8 +131,8 @@ public class FuncionarioService {
 			funcionarioRepository.save(funcionario);
 		}
 
-		// Disparo email (pendente)
-		return ResponseEntity.status(HttpStatus.OK).body("Funcionario desativado com sucesso!");
+		emailService.envioEmailDesativacaoContaFuncionario(conversor(funcionarioRepository.findById(id).get()));
+		return ResponseEntity.status(HttpStatus.OK).body("Funcionario(a) desativado com sucesso, um email será enviado para ele(a)!");
 	}
 
 	public ResponseEntity<String> ativarLogico(Integer id) {
@@ -137,7 +143,7 @@ public class FuncionarioService {
 			funcionarioRepository.save(funcionario);
 		}
 
-		// Disparo email (pendente)
-		return ResponseEntity.status(HttpStatus.OK).body("Funcionario ativado com sucesso!");
+		emailService.envioEmailAtivacaoContaFuncionario(conversor(funcionarioRepository.findById(id).get()));
+		return ResponseEntity.status(HttpStatus.OK).body("Funcionario(a) ativado com sucesso, um email será enviado para ele(a)!");
 	}
 }

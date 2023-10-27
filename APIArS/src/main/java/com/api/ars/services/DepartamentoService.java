@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.api.ars.dto.DepartamentoDTO;
 import com.api.ars.entities.Departamento;
 import com.api.ars.entities.Endereco;
+import com.api.ars.entities.Setor;
 import com.api.ars.repositories.DepartamentoRepository;
 import com.api.ars.repositories.EnderecoRepository;
 import com.api.ars.repositories.SetorRepository;
@@ -65,7 +66,8 @@ public class DepartamentoService {
 		salvarDepartamento.setEmail(departamentoDTO.getEmail());
 		salvarDepartamento.setOrcamento(departamentoDTO.getOrcamento());
 		salvarDepartamento.setTelefoneFixo(departamentoDTO.getTelefoneFixo());
-		salvarDepartamento.setSetor(setorRepository.findByNome(departamentoDTO.getNomeSetor()));
+		Setor setor = setorRepository.findByNome(departamentoDTO.getNomeSetor());
+		salvarDepartamento.setSetor(setor);
 		departamentoRepository.save(salvarDepartamento);
 		return ResponseEntity.status(HttpStatus.OK).body("Criação do departamento realizada com sucesso!");
 	}
@@ -76,6 +78,9 @@ public class DepartamentoService {
 		departamentoConvertido.setOrcamento(departamento.getOrcamento());
 		departamentoConvertido.setTelefoneFixo(departamento.getTelefoneFixo());
 		departamentoConvertido.setNomeSetor(departamento.getSetor().getNome());
+		departamentoConvertido.setCep(departamento.getEndereco().getCep());
+		departamentoConvertido.setNumero(departamento.getEndereco().getNumero());
+		departamentoConvertido.setComplemento(departamento.getEndereco().getComplemento());
 		return departamentoConvertido;
 	}
 	
