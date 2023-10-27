@@ -1,7 +1,6 @@
-
+# APIArS
+Repositório Individual Da Disciplina API-Restful (Serratec).
 <div align="center">
-  # APIArS
-  Repositório Individual Da Disciplina API-Restful (Serratec).
   <img  src="./logo_individual.png">
 </div>
 
