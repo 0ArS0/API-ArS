@@ -5,17 +5,27 @@ import java.time.LocalDate;
 public class FuncionarioDTO {
 
 	private Double salario;
+	private String nomeUsuario;
 	private LocalDate dataContratacao;
 	private Integer departamento;
 
 	public FuncionarioDTO() {
 	}
 
-	public FuncionarioDTO(Double salario, LocalDate dataContratacao, Integer departamento) {
+	public FuncionarioDTO(Double salario, LocalDate dataContratacao, Integer departamento, String nomeUsuario) {
 		super();
 		this.salario = salario;
 		this.dataContratacao = dataContratacao;
+		this.nomeUsuario = nomeUsuario;
 		this.departamento = departamento;
+	}
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	public Integer getDepartamento() {

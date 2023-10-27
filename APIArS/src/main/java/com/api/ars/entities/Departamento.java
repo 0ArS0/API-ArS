@@ -9,7 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "tb_departamento")
@@ -20,25 +22,22 @@ public class Departamento {
 	@Column(name = "id_departamento")
 	private Integer id;
 
-	@NotNull
-	@Column(name = "nome_departamento")
-	private String nome;
-
-	@NotNull
+	@Email
+	@NotNull(message = "Campo e-mail não pode ser nulo")
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
 	@Column(name = "email_departamento")
 	private String email;
 
-	@NotNull
+	@Pattern(regexp = "\\(\\d{2}\\) \\d{4}-\\d{4}")
 	@Column(name = "telefone_departamento")
 	private String telefoneFixo;
 
-	@NotNull
+	@NotNull(message = "Campo orcamento não pode ser nulo")
 	@Column(name = "orcamento_departamento")
 	private Double orcamento;
 
-	@NotNull
 	@Column(name = "ativo_departamento")
-	private Boolean ativo;
+	private Boolean ativo = true;
 
 	@OneToOne
 	@JoinColumn(name = "endereco_id")
@@ -51,11 +50,10 @@ public class Departamento {
 	public Departamento() {
 	}
 
-	public Departamento(Integer id, @NotNull String nome, @NotNull String email, @NotNull String telefoneFixo,
-			@NotNull Double orcamento, @NotNull Boolean ativo, Endereco endereco, Setor setor) {
+	public Departamento(Integer id, @NotNull String email, @NotNull String telefoneFixo, @NotNull Double orcamento,
+			@NotNull Boolean ativo, Endereco endereco, Setor setor) {
 		super();
 		this.id = id;
-		this.nome = nome;
 		this.email = email;
 		this.telefoneFixo = telefoneFixo;
 		this.orcamento = orcamento;
@@ -78,14 +76,6 @@ public class Departamento {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getTelefoneFixo() {
@@ -130,8 +120,8 @@ public class Departamento {
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", nome=" + nome + ", email=" + email + ", telefoneFixo=" + telefoneFixo
-				+ ", orcamento=" + orcamento + ", ativo=" + ativo + ", endereco=" + endereco + ", setor=" + setor + "]";
+		return "Departamento [id=" + id + ", email=" + email + ", telefoneFixo=" + telefoneFixo + ", orcamento="
+				+ orcamento + ", ativo=" + ativo + ", endereco=" + endereco + ", setor=" + setor + "]";
 	}
 
 }

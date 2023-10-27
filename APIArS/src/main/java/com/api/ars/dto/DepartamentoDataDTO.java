@@ -21,8 +21,6 @@ public class DepartamentoDataDTO {
 	}
 
 	public DepartamentoDataDTO() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getNomeDepartamento() {

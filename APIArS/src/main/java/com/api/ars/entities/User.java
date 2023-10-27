@@ -29,10 +29,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUser;
 
-	@NotNull(message = "Campo nome de funcionário não pode ser nulo")
+	@NotNull(message = "Campo nome de usuario não pode ser nulo")
 	private String nomeUsuario;
 
-	@NotNull(message = "Campo nome de funcionário não pode ser nulo")
+	@NotNull(message = "Campo nome completo não pode ser nulo")
 	private String nomeCompleto;
 
 	@Email

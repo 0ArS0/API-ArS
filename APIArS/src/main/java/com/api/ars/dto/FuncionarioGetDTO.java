@@ -3,7 +3,7 @@ package com.api.ars.dto;
 public class FuncionarioGetDTO {
 
 	private FuncionarioDataDTO funcionarioData;
-
+	
 	public FuncionarioGetDTO() {
 	}
 

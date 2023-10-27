@@ -1,6 +1,6 @@
 package com.api.ars.controllers;
  
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -109,7 +109,8 @@ public class UserController {
 					usuarioResumido.setPassword(encodedPass);
 					usuarioResumido.setEndereco(enderecoNovo);
 					userService.save(usuarioResumido);
-					funcionario.setUser(userService.findById(usuarioResumido.getIdUser()));
+					User usuarioNovo = userService.save(usuarioResumido);
+					funcionario.setUser(userService.findById(usuarioNovo.getIdUser()));
 					break;
 				case "USUARIO":
 					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_USUARIO)

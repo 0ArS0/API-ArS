@@ -22,13 +22,17 @@ public class Funcionario {
 	@Column(name = "id_funcionario")
 	private Integer id;
 
-	@NotNull
+	@NotNull(message = "Campo salario não pode ser nulo")
 	@Column(name = "salario")
 	private Double salario;
 
 	@NotNull
 	@Column(name = "data_contratacao")
 	private LocalDate dataContratacao;
+
+	@NotNull(message = "Campo nome de usuario não pode ser nulo")
+	@Column(name = "nome_usuario")
+	private String nomeUsuario;
 
 	@Column
 	private Boolean ativo = true;
@@ -44,15 +48,26 @@ public class Funcionario {
 	public Funcionario() {
 	}
 
-	public Funcionario(Integer id, @NotNull Double salario, @NotNull LocalDate dataContratacao, Boolean ativo,
+	public Funcionario(Integer id, @NotNull(message = "Campo salario não pode ser nulo") Double salario,
+			@NotNull LocalDate dataContratacao,
+			@NotNull(message = "Campo nome de usuario não pode ser nulo") String nomeUsuario, Boolean ativo,
 			Departamento departamento, User user) {
 		super();
 		this.id = id;
 		this.salario = salario;
 		this.dataContratacao = dataContratacao;
+		this.nomeUsuario = nomeUsuario;
 		this.ativo = ativo;
 		this.departamento = departamento;
 		this.user = user;
+	}
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	public Boolean getAtivo() {
@@ -105,8 +120,9 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", ativo="
-				+ ativo + ", departamento=" + departamento + ", user=" + user + "]";
+		return "Funcionario [id=" + id + ", salario=" + salario + ", dataContratacao=" + dataContratacao
+				+ ", nomeUsuario=" + nomeUsuario + ", ativo=" + ativo + ", departamento=" + departamento + ", user="
+				+ user + "]";
 	}
 
 }

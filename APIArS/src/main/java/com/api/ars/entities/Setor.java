@@ -26,8 +26,6 @@ public class Setor {
 	private String descricao;
 
 	public Setor() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Setor(Integer id, @NotNull(message = "O campo nome nao pode ser nulo") String nome,
