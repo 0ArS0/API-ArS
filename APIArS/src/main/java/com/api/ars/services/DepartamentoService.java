@@ -31,7 +31,6 @@ public class DepartamentoService {
 	@Autowired
 	SetorRepository setorRepository;
 
-	//GET Id
 	public DepartamentoDTO buscarPorId(Integer id) {
 		DepartamentoDTO infoDepartamento = new DepartamentoDTO();
 		Departamento departamento = departamentoRepository.findById(id).get();
@@ -39,7 +38,6 @@ public class DepartamentoService {
 		return infoDepartamento;
 	}
 
-	//GET Listar
 	public List<DepartamentoDTO> listarTodos() {
 		List<DepartamentoDTO> infoDepartamentos = new ArrayList<>();
 		List<Departamento> departamentos = departamentoRepository.findAll();
@@ -49,7 +47,6 @@ public class DepartamentoService {
 		return infoDepartamentos;
 	}
 	
-	//POST
 	public ResponseEntity<String> salvar(DepartamentoDTO departamentoDTO) {
 		Departamento salvarDepartamento = new Departamento();
 		Endereco viaCep = enderecoService.pesquisarEndereco(departamentoDTO.getCep());
@@ -84,7 +81,6 @@ public class DepartamentoService {
 		return departamentoConvertido;
 	}
 	
-	//PUT
 	public DepartamentoDTO atualizar(Integer id, DepartamentoDTO departamentoDTO) {
 		Departamento registroAntigo = departamentoRepository.findById(id).get();
 
@@ -120,13 +116,25 @@ public class DepartamentoService {
 	
 	}
 	
-	//DELETE
-	public void removerLogico(Integer id) {
+	public ResponseEntity<String> removerLogico(Integer id) {
 		Departamento departamento = departamentoRepository.findById(id).get();
 
 		if (departamento != null) {
 			departamento.setAtivo(false);
 			departamentoRepository.save(departamento);
 		}
+
+		return ResponseEntity.status(HttpStatus.OK).body("Departamento desativado com sucesso!");
+	}
+
+	public ResponseEntity<String> ativarLogico(Integer id) {
+		Departamento departamento = departamentoRepository.findById(id).get();
+
+		if (departamento != null) {
+			departamento.setAtivo(true);
+			departamentoRepository.save(departamento);
+		}
+
+		return ResponseEntity.status(HttpStatus.OK).body("Departamento ativado com sucesso!");
 	}
 }

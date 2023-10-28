@@ -29,6 +29,9 @@ public class FuncionarioService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	DepartamentoRepository departamentoRepository;
@@ -73,6 +76,7 @@ public class FuncionarioService {
 		funcionarioConvertido.setSalario(funcionario.getSalario());
 		funcionarioConvertido.setDataContratacao(funcionario.getDataContratacao());
 		funcionarioConvertido.setDepartamento(funcionario.getDepartamento().getId());
+		funcionarioConvertido.setNomeUsuario(funcionario.getNomeUsuario());
 		return funcionarioConvertido;
 	}
 
@@ -100,9 +104,7 @@ public class FuncionarioService {
 		return funcionarioConvertido;
 	}
 
-	// PUT
 	public ResponseEntity<String> atualizar(Integer id, FuncionarioDTO funcionarioDTO) {
-
 		Funcionario registroAntigo = funcionarioRepository.findById(id).get();
 
 		if (funcionarioDTO.getDepartamento() != null) {
@@ -111,15 +113,18 @@ public class FuncionarioService {
 		if (funcionarioDTO.getSalario() != null) {
 			registroAntigo.setSalario(funcionarioDTO.getSalario());
 		}
-
+		if (funcionarioDTO.getNomeUsuario() != null) {
+			User user = userRepository.findByNomeUsuario(registroAntigo.getNomeUsuario());
+			user.setNomeUsuario(funcionarioDTO.getNomeUsuario());
+			registroAntigo.setNomeUsuario(funcionarioDTO.getNomeUsuario());
+			userService.save(user);
+		}
+		
 		registroAntigo.setId(id);
 		funcionarioRepository.save(registroAntigo);
 		return ResponseEntity.status(HttpStatus.OK).body("Atualização de dados realizada com sucesso!");
 	}
 	
-	
-	
-	// DELETE
 	public ResponseEntity<String> removerLogico(Integer id) {
 		Funcionario funcionario = funcionarioRepository.findById(id).get();
 

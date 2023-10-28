@@ -40,9 +40,9 @@ public class DepartamentoController {
 		return departamentoService.buscarPorId(id);
 	}
 	
-	@ApiOperation(value="Lista todos os departamento", notes="Departamento")
+	@ApiOperation(value="Lista todos os departamentos", notes="Departamento")
 	@ApiResponses(value= {
-	@ApiResponse(code=200, message="Lista todos os departamento"),
+	@ApiResponse(code=200, message="Lista todos os departamentos"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
 	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
 	@ApiResponse(code=404, message="Recurso não encontrado"),
@@ -79,16 +79,31 @@ public class DepartamentoController {
 		return departamentoService.atualizar(id, departamentoDTO);
 	}
 	
-	@ApiOperation(value="Remove um departamento", notes="Departamento")
+	@ApiOperation(value="Ativa um departamento", notes="Departamento")
 	@ApiResponses(value= {
-	@ApiResponse(code=200, message="Remove um departamento"),
+	@ApiResponse(code=200, message="Ativa um departamento"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
+	@PutMapping("/ativar/{id}")
+	public ResponseEntity<?> ativarLogico(@PathVariable Integer id) {
+		return departamentoService.ativarLogico(id);
+	}
+	
+	@ApiOperation(value="Desativa um departamento", notes="Departamento")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Desativa um departamento"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
 	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
 	@ApiResponse(code=404, message="Recurso não encontrado"),
 	@ApiResponse(code=505, message="Exceção interna da aplicação"),
 	})
 	@DeleteMapping("/remover/{id}")
-	public void removerLogico(@PathVariable Integer id) {
-		departamentoService.removerLogico(id);
+	public ResponseEntity<?> removerLogico(@PathVariable Integer id) {
+		return departamentoService.removerLogico(id);
 	}
+	
+	
 }
