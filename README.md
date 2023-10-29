@@ -21,16 +21,20 @@ Em seguida, você pode prosseguir com o cadastro de usuários. Isso é fundament
 
 Recomendo a criação de setores e departamentos antes de prosseguir com o cadastramento de funcionários. Isso ajuda a estabelecer uma estrutura e simplifica a alocação de funcionários a departamentos específicos.
 
-<strong>4. Contratação de Funcionários: </strong>
+<strong>4. Contratação de Gerentes: </strong>
 
-Após a configuração de roles, o cadastro de usuários e a organização dos setores e departamentos, você pode proceder com a contratação de funcionários. 
+Após a configuração de roles, o cadastro de usuários e a organização dos setores e departamentos, você pode proceder com a contratação de gerentes. 
+
+<strong>5. Contratação de Funcionários: </strong>
+
+Você pode proceder com a contratação de funcionários. 
 
 ### Estrutura do Projeto
 O projeto segue uma estrutura organizada em pacotes. Os principais pacotes incluem:
 
 <strong>Config:</strong> Contém classes de configuração, como Swagger, CORS e autenticaçaõ JWT.
 
-<strong>Entities:</strong> Armazena as classes bean, que representam as entidades do projeto (Funcionário, Departamento, Setor, User, Roles).
+<strong>Entities:</strong> Armazena as classes bean, que representam as entidades do projeto (Funcionário, Departamento, Gerente, Setor, User, Roles).
 
 <strong>Repositories:</strong> Interfaces responsáveis por executar as queries de consulta no banco de dados para cada entidade.
 
@@ -47,7 +51,7 @@ O projeto inclui as seguintes funcionalidades principais:
 
 <strong>Consumo do ViaCep:</strong> Integração com o serviço ViaCep para obter informações de endereços por CEP.
 
-<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com os departamentos e seus funcionários.
+<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com os departamentos, seus funcionários e gerentes.
 
 <strong>Configuração de Exceptions:</strong> Gerenciamento de exceções e erros para um tratamento adequado.
 
