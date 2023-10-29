@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.api</groupId>
 	<artifactId>ars</artifactId>
-	<version>6.6.1</version>
+	<version>7.0.0</version>
 	<name>APIArS</name>
 	<description>Projeto Individual SpringBoot - Arthur da Silva Monteiro</description>
 	<properties>
