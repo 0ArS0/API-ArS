@@ -32,7 +32,7 @@ O projeto inclui as seguintes funcionalidades principais:
 
 <strong>Consumo do ViaCep:</strong> Integração com o serviço ViaCep para obter informações de endereços por CEP.
 
-<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com clientes e funcionários.
+<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com os departamentos e seus funcionários.
 
 <strong>Configuração de Exceptions:</strong> Gerenciamento de exceções e erros para um tratamento adequado.
 
