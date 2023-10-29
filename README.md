@@ -1,7 +1,9 @@
 # APIArS
 <div align="center">
   <img  src="./logo_individual.png">
-  Repositório Individual Da Disciplina API-Restful (Serratec).
+</div>
+<div align="center">
+    Repositório Individual Da Disciplina API-Restful (Serratec).
 </div>
 
 # Projeto Funcionario - Departamento
