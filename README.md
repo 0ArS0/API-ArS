@@ -9,16 +9,16 @@
 # Projeto Funcionario - Departamento
 Bem-vindo ao repositório do projeto Funcionario - Departamento. Este sistema foi desenvolvido para simplificar o gerenciamento de departamentos e funcionários, além de incluir recursos para organizar setores e usuários relacionados.Para garantir o funcionamento eficiente do projeto, siga estas etapas essenciais:
 
-<h2>1. Configuração de Roles (Autenticações) </h2>
+<strong>1. Configuração de Roles (Autenticações) </strong>
 Primeiramente, é necessário configurar as "roles" ou autenticações. Essas roles desempenham um papel fundamental no controle de acesso e permissões no sistema.
 
-<h2>2. Cadastro de Usuários </h2>
+<strong>2. Cadastro de Usuários </strong>
 Em seguida, você pode prosseguir com o cadastro de usuários. Isso é fundamental para identificar e autenticar os indivíduos que utilizarão o sistema. Embora o login não seja estritamente necessário, ele pode ser implementado para uma camada adicional de segurança e personalização.
 
-<h2>3. Organização de Setores e Departamentos </h2>
+<strong>3. Organização de Setores e Departamentos </strong>
 Recomendo a criação de setores e departamentos antes de prosseguir com o cadastramento de funcionários. Isso ajuda a estabelecer uma estrutura e simplifica a alocação de funcionários a departamentos específicos.
 
-<h2>4. Contratação de Funcionários </h2>
+<strong>4. Contratação de Funcionários </strong>
 Após a configuração de roles, o cadastro de usuários e a organização dos setores e departamentos, você pode proceder com a contratação de funcionários. 
 
 ### Estrutura do Projeto
