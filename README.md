@@ -1,9 +1,8 @@
 # APIArS
-Repositório Individual Da Disciplina API-Restful (Serratec).
 <div align="center">
   <img  src="./logo_individual.png">
+  Repositório Individual Da Disciplina API-Restful (Serratec).
 </div>
-
 
 # Projeto Funcionario - Departamento
 Este é o repositório do projeto Funcionario - Departamento, um sistema para gerenciar departamentos e seus funcionarios, incluindo setores e usuarios.
