@@ -117,7 +117,7 @@ public class FuncionarioService {
 			User user = userRepository.findByNomeUsuario(registroAntigo.getNomeUsuario());
 			user.setNomeUsuario(funcionarioDTO.getNomeUsuario());
 			registroAntigo.setNomeUsuario(funcionarioDTO.getNomeUsuario());
-			userService.save(user);
+			userRepository.save(user);
 		}
 		
 		registroAntigo.setId(id);

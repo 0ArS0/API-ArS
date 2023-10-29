@@ -9,7 +9,7 @@ public class UserDTO {
     private String nomeUsuario;
     private String email;
     private String password;
-    private String nome;
+    private String nomeCompleto;
 	private String telefoneFixo;
 	private String celular;
 	private String cpf;
@@ -22,7 +22,7 @@ public class UserDTO {
 	public UserDTO() {
 	}
 
-	public UserDTO(String nomeUsuario, String email, Set<String> roles, String password, String nome,
+	public UserDTO(String nomeUsuario, String email, Set<String> roles, String password, String nomeCompleto,
 			String telefoneFixo, String celular, String cpf, LocalDate dataNascimento, String cep,
 			String numero, String complementoAdicional) {
 		super();
@@ -30,7 +30,7 @@ public class UserDTO {
 		this.email = email;
 		this.roles = roles;
 		this.password = password;
-		this.nome = nome;
+		this.nomeCompleto = nomeCompleto;
 		this.telefoneFixo = telefoneFixo;
 		this.celular = celular;
 		this.cpf = cpf;
@@ -84,12 +84,12 @@ public class UserDTO {
 		return numero;
 	}
 	
-	public String getNome() {
-		return nome;
+	public String getNomeCompleto() {
+		return nomeCompleto;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
 	}
 
 	public String getTelefoneFixo() {

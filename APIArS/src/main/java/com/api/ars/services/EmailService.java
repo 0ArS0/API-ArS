@@ -33,6 +33,7 @@ public class EmailService {
 	
 	private JavaMailSender emailSender;
 
+	// no email o @Autowired é feito no construtor por causa da dependência
 	@Autowired
 	public void setJavaMailSender(JavaMailSender emailSender) {
 		this.emailSender = emailSender;

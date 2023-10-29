@@ -2,7 +2,7 @@ package com.api.ars.enums;
 
 public enum TipoRoleEnum {
 
-	ROLE_USUARIO("USUARIO"),
+	ROLE_GERENTE("GERENTE"),
 	ROLE_FUNCIONARIO("FUNCIONARIO");
 
 	private String tipo;
