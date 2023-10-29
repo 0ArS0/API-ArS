@@ -1,13 +1,29 @@
 # APIArS
-Repositório Individual Da Disciplina API-Restful (Serratec).
 <div align="center">
   <img  src="./logo_individual.png">
 </div>
-
+<div align="center">
+    Repositório Individual Da Disciplina API-Restful (Serratec).
+</div>
 
 # Projeto Funcionario - Departamento
-Este é o repositório do projeto Funcionario - Departamento, um sistema para gerenciar departamentos e seus funcionarios, incluindo setores e usuarios. Este projeto atende a requisitos essenciais para a criação e manutenção de um sistema de e-commerce robusto.
-<br><br>
+Bem-vindo ao repositório do projeto Funcionario - Departamento. Este sistema foi desenvolvido para simplificar o gerenciamento de departamentos e funcionários, além de incluir recursos para organizar setores e usuários relacionados.Para garantir o funcionamento eficiente do projeto, siga estas etapas essenciais:
+
+<strong>1. Configuração de Roles (Autenticações): </strong>
+
+Primeiramente, é necessário configurar as "roles" ou autenticações. Essas roles desempenham um papel fundamental no controle de acesso e permissões no sistema.
+
+<strong>2. Cadastro de Usuários: </strong>
+
+Em seguida, você pode prosseguir com o cadastro de usuários. Isso é fundamental para identificar e autenticar os indivíduos que utilizarão o sistema. Embora o login não seja estritamente necessário, ele pode ser implementado para uma camada adicional de segurança e personalização.
+
+<strong>3. Organização de Setores e Departamentos: </strong>
+
+Recomendo a criação de setores e departamentos antes de prosseguir com o cadastramento de funcionários. Isso ajuda a estabelecer uma estrutura e simplifica a alocação de funcionários a departamentos específicos.
+
+<strong>4. Contratação de Funcionários: </strong>
+
+Após a configuração de roles, o cadastro de usuários e a organização dos setores e departamentos, você pode proceder com a contratação de funcionários. 
 
 ### Estrutura do Projeto
 O projeto segue uma estrutura organizada em pacotes. Os principais pacotes incluem:
@@ -31,7 +47,7 @@ O projeto inclui as seguintes funcionalidades principais:
 
 <strong>Consumo do ViaCep:</strong> Integração com o serviço ViaCep para obter informações de endereços por CEP.
 
-<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com clientes e funcionários.
+<strong>Configuração de E-mail:</strong> Implementação de configurações de e-mail para comunicações com os departamentos e seus funcionários.
 
 <strong>Configuração de Exceptions:</strong> Gerenciamento de exceções e erros para um tratamento adequado.
 
