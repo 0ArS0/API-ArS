@@ -6,7 +6,7 @@ Repositório Individual Da Disciplina API-Restful (Serratec).
 
 
 # Projeto Funcionario - Departamento
-Este é o repositório do projeto Funcionario - Departamento, um sistema para gerenciar departamentos e seus funcionarios, incluindo setores e usuarios. Este projeto atende a requisitos essenciais para a criação e manutenção de um sistema de e-commerce robusto.
+Este é o repositório do projeto Funcionario - Departamento, um sistema para gerenciar departamentos e seus funcionarios, incluindo setores e usuarios.
 <br><br>
 
 ### Estrutura do Projeto
