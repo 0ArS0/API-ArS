@@ -33,7 +33,6 @@ public class EmailService {
 	
 	private JavaMailSender emailSender;
 
-	// no email o @Autowired é feito no construtor por causa da dependência
 	@Autowired
 	public void setJavaMailSender(JavaMailSender emailSender) {
 		this.emailSender = emailSender;
@@ -131,7 +130,7 @@ public class EmailService {
 			builder.append("</html>\r\n");
 
 			helper.setText(builder.toString(), true);
-			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.png");
+			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.jpg");
 			helper.addInline("logo1", img);
 			emailSender.send(mensagemCadastro);
 
@@ -198,7 +197,7 @@ public class EmailService {
 			builder.append("</html>\r\n");
 
 			helper.setText(builder.toString(), true);
-			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.png");
+			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.jpg");
 			helper.addInline("logo2", img);
 			emailSender.send(mensagemCadastro);
 
@@ -263,7 +262,7 @@ public class EmailService {
 			builder.append("</html>\r\n");
 
 			helper.setText(builder.toString(), true);
-			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.png");
+			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.jpg");
 			helper.addInline("logo3", img);
 			emailSender.send(mensagemCadastro);
 
@@ -324,7 +323,7 @@ public class EmailService {
 			builder.append("</html>\r\n");
 
 			helper.setText(builder.toString(), true);
-			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.png");
+			ClassPathResource img = new ClassPathResource("img/logo_grupo_5.jpg");
 			helper.addInline("logo4", img);
 			emailSender.send(mensagemCadastro);
 
